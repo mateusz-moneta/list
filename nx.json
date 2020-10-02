@@ -28,6 +28,12 @@
     "list-e2e": {
       "tags": [],
       "implicitDependencies": ["list"]
+    },
+    "data-access-list": {
+      "tags": []
+    },
+    "app-config": {
+      "tags": []
     }
   }
 }

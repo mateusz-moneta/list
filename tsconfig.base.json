@@ -15,7 +15,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@list/data-access-list": ["libs/data-access-list/src/index.ts"],
+      "@list/app-config": ["libs/app-config/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
