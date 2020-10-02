@@ -1,15 +1,39 @@
-import { createAction, props } from '@ngrx/store';
+import { Action } from '@ngrx/store';
+import { HttpErrorResponse } from '@angular/common/http';
 
-import { Company } from '../../interfaces/company.interface';
+import { CompanySummary } from '../../interfaces/company-summary.interface';
 
-export const loadCompanyList = createAction('[List] Load Company List');
+export namespace fromListActions {
+  export enum Types {
+    GetCompanySummaryList = '[List] Get Company Summary List',
+    GetCompanySummaryListFail = '[[List] Get Company Summary List Fail',
+    GetCompanySummaryListSuccess = '[List] Get Company Summary List Success',
+    GetCompanySummarySuccess = '[List] Get Company Summary Success',
+  }
 
-export const loadCompanyListSuccess = createAction(
-  '[List] Load Company List Success',
-  props<{ companyList: Company[] }>()
-);
+  export class GetCompanySummaryList implements Action {
+    readonly type = Types.GetCompanySummaryList;
+  }
 
-export const loadCompanyListFailure = createAction(
-  '[List] Load Company List Failure',
-  props<{ error: any }>()
-);
+  export class GetCompanySummaryListFail implements Action {
+    readonly type = Types.GetCompanySummaryListFail;
+
+    constructor(public payload: HttpErrorResponse) {}
+  }
+
+  export class GetCompanySummaryListSuccess implements Action {
+    readonly type = Types.GetCompanySummaryListSuccess;
+  }
+
+  export class GetCompanySummarySuccess implements Action {
+    readonly type = Types.GetCompanySummarySuccess;
+
+    constructor(public payload: CompanySummary) {}
+  }
+
+  export type CollectiveType =
+    | GetCompanySummaryList
+    | GetCompanySummaryListFail
+    | GetCompanySummaryListSuccess
+    | GetCompanySummarySuccess
+}

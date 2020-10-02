@@ -1,4 +1,4 @@
 export interface Income {
-  value: number;
+  value: string;
   date: string;
 }

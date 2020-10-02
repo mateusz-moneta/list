@@ -23,17 +23,14 @@
   },
   "projects": {
     "list": {
-      "tags": []
+      "tags": ["platform:web", "type:application"]
     },
     "list-e2e": {
-      "tags": [],
+      "tags": ["platform:web", "type:application"],
       "implicitDependencies": ["list"]
     },
     "data-access-list": {
-      "tags": []
-    },
-    "app-config": {
-      "tags": []
+      "tags": ["platform:web", "type:data-access"]
     }
   }
 }

@@ -1,38 +1,21 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import {
-  LIST_FEATURE_KEY,
-  State,
-  ListPartialState,
-  listAdapter,
-} from './list.reducer';
+
+import { LIST_FEATURE_KEY, ListState } from './list.reducer';
 
 // Lookup the 'List' feature state managed by NgRx
-export const getListState = createFeatureSelector<ListPartialState, State>(
-  LIST_FEATURE_KEY
-);
+const getListState = createFeatureSelector<ListState>(LIST_FEATURE_KEY);
 
-const { selectAll, selectEntities } = listAdapter.getSelectors();
-
-export const getListError = createSelector(
+const getCompanySummaryList = createSelector(
   getListState,
-  (state: State) => state.error
+  state => state.companySummaryList
 );
 
-export const getAllList = createSelector(getListState, (state: State) =>
-  selectAll(state)
-);
-
-export const getListEntities = createSelector(getListState, (state: State) =>
-  selectEntities(state)
-);
-
-export const getSelectedId = createSelector(
+const getCompanySummaryListInProgress = createSelector(
   getListState,
-  (state: State) => state.selectedId
+  state => state.getCompanySummaryListInProgress
 );
 
-export const getSelected = createSelector(
-  getListEntities,
-  getSelectedId,
-  (entities, selectedId) => selectedId && entities[selectedId]
-);
+export const listQuery = {
+  getCompanySummaryList,
+  getCompanySummaryListInProgress
+};
