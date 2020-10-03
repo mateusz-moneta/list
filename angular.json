@@ -59,7 +59,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "list:build"
+            "browserTarget": "list:build",
+            "proxyConfig": "apps/list/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -116,6 +117,36 @@
             "tsConfig": ["apps/list-e2e/tsconfig.e2e.json"],
             "exclude": ["**/node_modules/**", "!apps/list-e2e/**/*"]
           }
+        }
+      }
+    },
+    "data-access-list": {
+      "projectType": "library",
+      "root": "libs/data-access-list",
+      "sourceRoot": "libs/data-access-list/src",
+      "prefix": "list",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/data-access-list/tsconfig.lib.json",
+              "libs/data-access-list/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/data-access-list/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data-access-list/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
         }
       }
     }
