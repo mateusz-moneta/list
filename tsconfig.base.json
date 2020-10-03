@@ -17,7 +17,8 @@
     "baseUrl": ".",
     "paths": {
       "@list/data-access-list": ["libs/data-access-list/src/index.ts"],
-      "@list/app-config": ["libs/app-config/src/index.ts"]
+      "@list/ui": ["libs/ui/src/index.ts"],
+      "@list/shared": ["libs/shared/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -31,6 +31,12 @@
     },
     "data-access-list": {
       "tags": ["platform:web", "type:data-access"]
+    },
+    "ui": {
+      "tags": ["platform:web", "type:ui"]
+    },
+    "shared": {
+      "tags": ["platform:web", "type:shared"]
     }
   }
 }
