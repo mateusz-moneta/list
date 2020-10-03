@@ -1,0 +1,17 @@
+<table class="adjustable-table">
+  <thead class="adjustable-table-header-row">
+    <tr>
+      <th *ngFor="let headElement of headElements" class="adjustable-table-header-cell">{{ headElement }} </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let element of dataSource.data$.getValue()" class="adjustable-table-row">
+      <td class="adjustable-table-cell">{{ element.id }}</td>
+      <td class="adjustable-table-cell">{{ element.name }}</td>
+      <td class="adjustable-table-cell">{{ element.city }}</td>
+      <td class="adjustable-table-cell">{{ element.averageIncome }}</td>
+      <td class="adjustable-table-cell">{{ element.lastMonthIncome }}</td>
+      <td class="adjustable-table-cell">{{ element.averageIncome }}</td>
+    </tr>
+  </tbody>
+</table>
