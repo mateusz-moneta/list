@@ -1,8 +1,9 @@
 <div *ngIf="!(getCompanySummaryListInProgress$ | async); else loading" class="container">
   <div class="row">
     <list-table
+      #listTable
       [dataSource]="dataSource"
-      [headElements]="headElements"
+      [fieldConfiguration]="fieldConfiguration"
     ></list-table>
   </div>
 

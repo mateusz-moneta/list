@@ -1,9 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { CompanySummary, ListFacade } from '@list/data-access-list';
-import { CustomDataSource, tableConfig } from '@list/shared';
+import { CustomDataSource, FieldConfiguration, tableConfig } from '@list/shared';
+import { TableComponent } from '@list/ui';
 
 @Component({
   selector: 'list-root',
@@ -11,13 +12,20 @@ import { CustomDataSource, tableConfig } from '@list/shared';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
+  @ViewChild('listTable', { static: false }) listTable: TableComponent<CompanySummary>;
+
   companySummaryList$ = this.listFacade.companySummaryList$;
   dataSource: CustomDataSource<CompanySummary>;
+  fieldConfiguration: FieldConfiguration[] = [
+    { propertyName: 'id', name: 'ID' },
+    { propertyName: 'name', name: 'Name' },
+    { propertyName: 'averageIncome', name: 'Average Income' },
+    { propertyName: 'lastMonthIncome', name: 'Last Month Income' },
+    { propertyName: 'totalIncome', name: 'Total Income' }
+  ];
   getCompanySummaryListInProgress$ = this.listFacade.getCompanySummaryListInProgress$;
 
   private unSubscribe$ = new Subject<void>();
-
-  readonly headElements = ['ID', 'Name', 'City', 'Average Income', 'Last Month Income', 'Total Income'];
   readonly paginationConfig = tableConfig.pagination;
 
   constructor(private listFacade: ListFacade) {}

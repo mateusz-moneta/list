@@ -6,6 +6,6 @@ export const tableConfig = {
   },
   sort: {
     active: 'id',
-    direction: 'desc'
+    direction: null
   }
 };

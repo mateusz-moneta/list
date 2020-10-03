@@ -35,7 +35,6 @@ export class ListEffects {
   private getCompanySummaryList(companyList: Company[]): Observable<CompanySummary[]> {
     return forkJoin(
       companyList
-        .sort((prev, next) => (prev.id > next.id) ? 1 : -1)
         .map((company, index) =>
           this.listApiService.getIncomeList({ companyId: company.id })
             .pipe(
