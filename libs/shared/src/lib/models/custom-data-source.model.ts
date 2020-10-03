@@ -15,10 +15,10 @@ export class CustomDataSource<T> {
     length: tableConfig.pagination.pageSize
   });
   recordsCount$ = new BehaviorSubject<number>(null);
-  sort$ = new BehaviorSubject<Sort>(tableConfig.sort as Sort);
+  sort$ = new BehaviorSubject<Sort>(null);
 
   constructor(private data: T[]) {
-    this.data$.next(this.paginate(data, this.pagination$.getValue().pageSize, this.pagination$.getValue().pageIndex));
+    this.data$.next(this.paginate(data));
     this.recordsCount$.next(data.length);
     this.handleSettings();
   }
@@ -47,26 +47,38 @@ export class CustomDataSource<T> {
   }
 
   private getOutputData(items: T[]): T[] {
-    const sortedItems = this.sort(items, this.sort$.getValue().active, this.sort$.getValue().direction);
-    const paginatedItems = this.paginate(sortedItems, this.pagination$.getValue().pageSize, this.pagination$.getValue().pageIndex);
+    const sortedItems = this.sort(items);
+    const paginatedItems = this.paginate(sortedItems);
 
     return paginatedItems;
   }
 
-  private paginate(items: T[], pageSize: number, pageIndex): T[] {
-    return items.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize);
+  private paginate(items: T[]): T[] {
+    if (this.pagination$.getValue()) {
+      const { pageIndex, pageSize } = this.pagination$.getValue();
+
+      return items.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize);
+    }
+
+    return items;
   }
 
-  private sort(items: T[], active: string, direction: SortDirection): T[] {
-    switch (direction) {
-      case SortDirection.ASC:
-        return items.slice().sort((prev, next) => (prev[active] > next[active]) ? 1 : -1);
+  private sort(items: T[]): T[] {
+    if (this.sort$.getValue()) {
+      const { active, direction } = this.sort$.getValue();
 
-      case SortDirection.DESC:
-        return items.slice().sort((prev, next) => (prev[active] > next[active]) ? -1 : 1);
+      switch (direction) {
+        case SortDirection.ASC:
+          return items.slice().sort((prev, next) => (prev[active] > next[active]) ? 1 : -1);
 
-      default:
-        return items;
+        case SortDirection.DESC:
+          return items.slice().sort((prev, next) => (prev[active] > next[active]) ? -1 : 1);
+
+        default:
+          return items;
+      }
     }
+
+    return items;
   }
 }

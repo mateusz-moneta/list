@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { CustomDataSource, FieldConfiguration, SortDirection } from '@list/shared';
+import { CustomDataSource, FieldConfiguration } from '@list/shared';
 
 @Component({
   selector: 'list-table',
@@ -13,17 +13,4 @@ export class TableComponent<T> {
 
   @Input()
   fieldConfiguration: FieldConfiguration[] = [];
-
-  private currentDirection: SortDirection;
-
-  changeSort(active: string): void {
-    this.currentDirection = !this.currentDirection || this.currentDirection === SortDirection.DESC
-      ? SortDirection.ASC
-      : SortDirection.DESC;
-
-    this.dataSource.changeSort({
-      active,
-      direction: this.currentDirection
-    });
-  }
 }

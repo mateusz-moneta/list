@@ -6,6 +6,7 @@ import { CustomPageComponent } from './components/custom-page/custom-page.compon
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { ProgressSpinnerComponent } from './components/progress-spinner/progress-spinner.component';
 import { SharedModule } from '@list/shared';
+import { SortDirective } from './directives/sort.directive';
 import { TableComponent } from './components/table/table.component';
 
 @NgModule({
@@ -19,12 +20,14 @@ import { TableComponent } from './components/table/table.component';
     CustomPageComponent,
     PaginatorComponent,
     ProgressSpinnerComponent,
+    SortDirective,
     TableComponent
   ],
   exports: [
     PaginatorComponent,
-    TableComponent,
-    ProgressSpinnerComponent
+    ProgressSpinnerComponent,
+    SortDirective,
+    TableComponent
   ]
 })
 export class UiModule {}

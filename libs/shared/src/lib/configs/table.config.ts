@@ -3,9 +3,5 @@ export const tableConfig = {
     pageIndex: 0,
     pageSize: 10,
     pageSizeOptions: [10, 25, 100, 250]
-  },
-  sort: {
-    active: 'id',
-    direction: null
   }
 };

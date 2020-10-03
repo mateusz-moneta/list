@@ -1,13 +1,14 @@
 <table class="adjustable-table">
   <thead class="adjustable-table-header-row">
     <tr>
-      <th
-        *ngFor="let field of fieldConfiguration"
-        (click)="changeSort(field.propertyName)"
-        class="adjustable-table-header-cell"
-      >
-        {{ field.name }}
-      </th>
+      <ng-container *ngFor="let field of fieldConfiguration">
+        <th
+          [listSort]="field.propertyName"
+          class="adjustable-table-header-cell"
+        >
+          {{ field.name }}
+        </th>
+      </ng-container>
     </tr>
   </thead>
   <tbody>
