@@ -1,14 +1,13 @@
 import { Action } from '@ngrx/store';
-import { HttpErrorResponse } from '@angular/common/http';
 
-import { CompanySummary } from '../../interfaces/company-summary.interface';
+import { GetCompanySummaryListFailActionPayload } from '../../interfaces/get-company-summary-list-fail.action-payload';
+import { GetCompanySummaryListSuccessActionPayload } from '../../interfaces/get-company-summary-list-success.action-payload';
 
 export namespace fromListActions {
   export enum Types {
     GetCompanySummaryList = '[List] Get Company Summary List',
-    GetCompanySummaryListFail = '[[List] Get Company Summary List Fail',
-    GetCompanySummaryListSuccess = '[List] Get Company Summary List Success',
-    GetCompanySummarySuccess = '[List] Get Company Summary Success',
+    GetCompanySummaryListFail = '[List] Get Company Summary List Fail',
+    GetCompanySummaryListSuccess = '[List] Get Company Summary List Success'
   }
 
   export class GetCompanySummaryList implements Action {
@@ -18,22 +17,17 @@ export namespace fromListActions {
   export class GetCompanySummaryListFail implements Action {
     readonly type = Types.GetCompanySummaryListFail;
 
-    constructor(public payload: HttpErrorResponse) {}
+    constructor(public payload: GetCompanySummaryListFailActionPayload) {}
   }
 
   export class GetCompanySummaryListSuccess implements Action {
     readonly type = Types.GetCompanySummaryListSuccess;
-  }
 
-  export class GetCompanySummarySuccess implements Action {
-    readonly type = Types.GetCompanySummarySuccess;
-
-    constructor(public payload: CompanySummary) {}
+    constructor(public payload: GetCompanySummaryListSuccessActionPayload) {}
   }
 
   export type CollectiveType =
     | GetCompanySummaryList
     | GetCompanySummaryListFail
     | GetCompanySummaryListSuccess
-    | GetCompanySummarySuccess
 }

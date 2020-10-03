@@ -6,7 +6,7 @@
  *
  * - Patching the Angular CLI to warn you in case you accidentally use the undecorated ng command.
  * - Symlinking the ng to nx command, so all commands run through the Nx CLI
- * - Updating the proxy.conf.json postinstall script to give you control over this script
+ * - Updating the package.json postinstall script to give you control over this script
  *
  * The Nx CLI decorates the Angular CLI, so the Nx CLI is fully compatible with it.
  * Every command you run should work the same when using the Nx CLI, except faster.
@@ -16,8 +16,8 @@
  * The Nx CLI simply does some optimizations before invoking the Angular CLI.
  *
  * To opt out of this patch:
- * - Replace occurrences of nx with ng in your proxy.conf.json
- * - Remove the script from your postinstall script in your proxy.conf.json
+ * - Replace occurrences of nx with ng in your package.json
+ * - Remove the script from your postinstall script in your package.json
  * - Delete and reinstall your node_modules
  */
 

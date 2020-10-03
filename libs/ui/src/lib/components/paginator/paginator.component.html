@@ -1,0 +1,31 @@
+<div class="paginator-settings-container">
+  <p class="items-per-page">Items per page</p>
+  <mat-select [formControl]="pageSizeOption">
+    <mat-option *ngFor="let pageSizeOption of pageSizeOptions" [value]="pageSizeOption">
+      {{ pageSizeOption }}
+    </mat-option>
+  </mat-select>
+  <p class="range">of {{ length }}</p>
+</div>
+<div class="paginator-container">
+  <p class="page">Page</p>
+  <div>
+    <button (click)="firstPage()" [disabled]="currentPage === 0" type="button">
+      <mat-icon>first_page</mat-icon>
+    </button>
+    <button (click)="switchPage(currentPage - 1)" [disabled]="currentPage === 0" type="button">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+  </div>
+  <div class="custom-pages-container">
+    <template #customPagesContainer></template>
+  </div>
+  <div>
+    <button (click)="switchPage(currentPage + 1)" [disabled]="currentPage >= lastIndex" type="button">
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+    <button (click)="lastPage()" [disabled]="currentPage >= lastIndex" type="button">
+      <mat-icon>last_page</mat-icon>
+    </button>
+  </div>
+</div>
