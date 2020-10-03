@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 import { DataPersistence } from '@nrwl/angular';
 import { forkJoin, Observable } from 'rxjs';
-import { concatAll, finalize, map, switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 
 import { Calculation } from '../../models/calculation.model';
 import { Company } from '../../interfaces/company.interface';
@@ -23,16 +23,16 @@ export class ListEffects {
           switchMap(companyList =>
             this.getCompanySummaryList(companyList).pipe(
               map(
-                companySummary => new fromListActions.GetCompanySummarySuccess(companySummary)
+                companySummaryList => new fromListActions.GetCompanySummaryListSuccess({ companySummaryList })
               )
             )
-          ),
-          finalize(() => new fromListActions.GetCompanySummaryListSuccess())
+          )
         ),
-    onError: (action: fromListActions.GetCompanySummaryList, error: HttpErrorResponse) => new fromListActions.GetCompanySummaryListFail(error)
+    onError: (action: fromListActions.GetCompanySummaryList, error: HttpErrorResponse) =>
+      new fromListActions.GetCompanySummaryListFail({ companySummaryListError: error})
   });
 
-  getCompanySummaryList(companyList: Company[]): Observable<CompanySummary> {
+  private getCompanySummaryList(companyList: Company[]): Observable<CompanySummary[]> {
     return forkJoin(
       companyList
         .sort((prev, next) => (prev.id > next.id) ? 1 : -1)
@@ -51,7 +51,7 @@ export class ListEffects {
               })
             )
         )
-    ).pipe(concatAll());
+    );
   }
 
   constructor(

@@ -1,3 +1,5 @@
+import { HttpErrorResponse } from '@angular/common/http';
+
 import { CompanySummary } from '../../interfaces/company-summary.interface';
 import { fromListActions } from './list.actions';
 
@@ -5,6 +7,7 @@ export const LIST_FEATURE_KEY = 'list';
 
 export interface ListState {
   companySummaryList: CompanySummary[];
+  companySummaryListError: HttpErrorResponse;
   getCompanySummaryListInProgress: boolean;
 }
 
@@ -14,6 +17,7 @@ export interface ListPartialState {
 
 export const initialState: ListState = {
   companySummaryList: [],
+  companySummaryListError: null,
   getCompanySummaryListInProgress: false
 };
 
@@ -33,27 +37,20 @@ export function listReducer(
     case fromListActions.Types.GetCompanySummaryListFail: {
       state = {
         ...state,
+        companySummaryListError: action.payload.companySummaryListError,
         getCompanySummaryListInProgress: false
       };
+
       break;
     }
 
     case fromListActions.Types.GetCompanySummaryListSuccess: {
       state = {
         ...state,
-        getCompanySummaryListInProgress: false,
+        companySummaryList: action.payload.companySummaryList,
+        getCompanySummaryListInProgress: false
       };
-      break;
-    }
 
-    case fromListActions.Types.GetCompanySummarySuccess: {
-      state = {
-        ...state,
-        companySummaryList: [
-          ...state.companySummaryList,
-          action.payload
-        ]
-      };
       break;
     }
   }
