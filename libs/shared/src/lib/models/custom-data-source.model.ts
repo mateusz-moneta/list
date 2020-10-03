@@ -1,6 +1,5 @@
 import { BehaviorSubject, combineLatest } from 'rxjs';
 
-import { Filter } from '../interfaces/filter.interface';
 import { PageEvent } from '../interfaces/page-event.interface';
 import { Sort } from '../interfaces/sort.interface';
 import { SortDirection } from '../enum/sort-direction.enum';
@@ -8,7 +7,7 @@ import { tableConfig } from '../configs/table.config';
 
 export class CustomDataSource<T> {
   data$ = new BehaviorSubject<T[]>(null);
-  filters$ = new BehaviorSubject<Filter[]>(null);
+  filter$ = new BehaviorSubject<string>(null);
   pagination$ = new BehaviorSubject<PageEvent>({
     pageSize: tableConfig.pagination.pageSize,
     pageIndex: 0,
@@ -18,13 +17,13 @@ export class CustomDataSource<T> {
   sort$ = new BehaviorSubject<Sort>(null);
 
   constructor(private data: T[]) {
-    this.data$.next(this.paginate(data));
-    this.recordsCount$.next(data.length);
+    this.data$.next(this.paginate(this.data));
+    this.recordsCount$.next(this.data.length);
     this.handleSettings();
   }
 
-  changeFilters(filter: Filter[]): void {
-    this.filters$.next(filter);
+  changeFilter(filter: string): void {
+    this.filter$.next(filter);
   }
 
   changePagination(pageEvent: PageEvent): void {
@@ -37,20 +36,29 @@ export class CustomDataSource<T> {
 
   private handleSettings(): void {
     combineLatest([
-      this.filters$,
+      this.filter$,
       this.pagination$,
       this.sort$
     ])
       .subscribe(() => {
         this.data$.next(this.getOutputData(this.data));
+        this.recordsCount$.next(this.getRecordsCount(this.data));
       });
   }
 
+  private getRecordsCount(items: T[]): number {
+    return this.sort(this.filter$.getValue() ? this.filterByValue(items, this.filter$.getValue()) : items).length;
+  }
+
   private getOutputData(items: T[]): T[] {
-    const sortedItems = this.sort(items);
+    const sortedItems = this.sort(this.filter$.getValue() ? this.filterByValue(items, this.filter$.getValue()) : items);
     const paginatedItems = this.paginate(sortedItems);
 
     return paginatedItems;
+  }
+
+  private filterByValue(items: T[], filterValue: string): T[] {
+    return items.filter(item => Object.keys(item).some(key => item[key].toString().toLowerCase().includes(filterValue.toLowerCase())));
   }
 
   private paginate(items: T[]): T[] {

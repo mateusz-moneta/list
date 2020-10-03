@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { CompanySummary, ListFacade } from '@list/data-access-list';
-import { CustomDataSource, FieldConfiguration, tableConfig } from '@list/shared';
+import { CustomDataSource, FieldConfiguration, Filter, tableConfig } from '@list/shared';
 import { TableComponent } from '@list/ui';
 
 @Component({
@@ -23,6 +23,7 @@ export class AppComponent implements OnInit, OnDestroy {
     { propertyName: 'lastMonthIncome', name: 'Last Month Income' },
     { propertyName: 'totalIncome', name: 'Total Income' }
   ];
+  filterValue: string;
   getCompanySummaryListInProgress$ = this.listFacade.getCompanySummaryListInProgress$;
 
   private unSubscribe$ = new Subject<void>();
@@ -39,6 +40,11 @@ export class AppComponent implements OnInit, OnDestroy {
     this.unSubscribe$.next();
     this.unSubscribe$.complete();
   }
+
+  onFilterValueChange(filterValue: string): void {
+    this.filterValue = filterValue;
+  }
+
 
   private initCompanySummaryList(): void {
     this.companySummaryList$

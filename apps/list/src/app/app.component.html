@@ -1,9 +1,14 @@
 <div *ngIf="!(getCompanySummaryListInProgress$ | async); else loading" class="container">
   <div class="row">
+    <list-filter (valueChange)="onFilterValueChange($event)"></list-filter>
+  </div>
+
+  <div class="row">
     <list-table
       #listTable
       [dataSource]="dataSource"
       [fieldConfiguration]="fieldConfiguration"
+      [filterValue]="filterValue"
     ></list-table>
   </div>
 

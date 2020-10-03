@@ -8,6 +8,7 @@ import { ProgressSpinnerComponent } from './components/progress-spinner/progress
 import { SharedModule } from '@list/shared';
 import { SortDirective } from './directives/sort.directive';
 import { TableComponent } from './components/table/table.component';
+import { FilterComponent } from './filter/filter.component';
 
 @NgModule({
   imports: [
@@ -21,13 +22,15 @@ import { TableComponent } from './components/table/table.component';
     PaginatorComponent,
     ProgressSpinnerComponent,
     SortDirective,
-    TableComponent
+    TableComponent,
+    FilterComponent
   ],
   exports: [
     PaginatorComponent,
     ProgressSpinnerComponent,
     SortDirective,
-    TableComponent
+    TableComponent,
+    FilterComponent
   ]
 })
 export class UiModule {}
