@@ -96,7 +96,7 @@ export class PaginatorComponent implements OnChanges, OnInit, OnDestroy {
   }
 
   get lastIndex(): number {
-    return Math.floor(this.length / this.pageSize);
+    return Math.floor(this.length / this.pageSize) - 1;
   }
 
   private _buildCustomPages(): void {
