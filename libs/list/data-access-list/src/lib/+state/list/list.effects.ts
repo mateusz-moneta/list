@@ -44,7 +44,7 @@ export class ListEffects {
                 return {
                   ...company,
                   averageIncome: calculation.averageIncome,
-                  lastMonthIncome: 1,
+                  lastMonthIncome: calculation.lastMonthIncome,
                   totalIncome: calculation.totalIncome
                 } as CompanySummary;
               })
