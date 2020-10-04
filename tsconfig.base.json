@@ -16,9 +16,20 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@list/data-access-list": ["libs/data-access-list/src/index.ts"],
-      "@list/ui": ["libs/ui/src/index.ts"],
-      "@list/shared": ["libs/shared/src/index.ts"]
+      "@list/list/feature-list": ["libs/list/feature-list/src/index.ts"],
+      "@list/list/data-access-list": [
+        "libs/list/data-access-list/src/index.ts"
+      ],
+      "@list/list/ui": ["libs/list/ui/src/index.ts"],
+      "@list/list/ui-table": ["libs/list/ui-table/src/index.ts"],
+      "@list/list/ui-paginator": ["libs/list/ui-paginator/src/index.ts"],
+      "@list/list/domain": ["libs/list/domain/src/index.ts"],
+      "@list/list/config": ["libs/list/config/src/index.ts"],
+      "@list/list/util-data-table": ["libs/list/util-data-table/src/index.ts"],
+      "@list/list/ui-progress-spinner": [
+        "libs/list/ui-progress-spinner/src/index.ts"
+      ],
+      "@list/list/ui-filter": ["libs/list/ui-filter/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

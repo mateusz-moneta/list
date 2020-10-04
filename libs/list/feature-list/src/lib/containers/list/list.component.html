@@ -1,0 +1,34 @@
+<div *ngIf="!(getCompanySummaryListInProgress$ | async); else loading" class="container">
+  <div class="row">
+    <list-filter (valueChange)="onFilterValueChange($event)"></list-filter>
+  </div>
+
+  <div class="row">
+    <list-table
+      #listTable
+      [dataSource]="dataSource"
+      [fieldConfiguration]="fieldConfiguration"
+      [filterValue]="filterValue"
+    ></list-table>
+  </div>
+
+  <div class="row">
+    <list-paginator
+      (page)="dataSource.changePagination($event)"
+      [length]="dataSource.recordsCount$.getValue()"
+      [pageIndex]="dataSource.pagination$.getValue().pageIndex"
+      [pageSize]="paginationConfig.pageSize"
+      [pageSizeOptions]="paginationConfig.pageSizeOptions"
+    >
+    </list-paginator>
+  </div>
+</div>
+
+<ng-template #loading>
+  <list-progress-spinner
+    [color]="'primary'"
+    [mode]="'indeterminate'"
+    [value]="50"
+  >
+  </list-progress-spinner>
+</ng-template>

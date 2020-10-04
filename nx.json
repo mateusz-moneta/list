@@ -29,14 +29,32 @@
       "tags": ["platform:web", "type:application"],
       "implicitDependencies": ["list"]
     },
+    "feature-list": {
+      "tags": ["platform:web", "type:feature"]
+    },
     "data-access-list": {
       "tags": ["platform:web", "type:data-access"]
     },
-    "ui": {
+    "ui-filter": {
       "tags": ["platform:web", "type:ui"]
     },
-    "shared": {
-      "tags": ["platform:web", "type:shared"]
+    "ui-paginator": {
+      "tags": ["platform:web", "type:ui"]
+    },
+    "ui-progress-spinner": {
+      "tags": ["platform:web", "type:ui"]
+    },
+    "ui-table": {
+      "tags": ["platform:web", "type:ui"]
+    },
+    "domain": {
+      "tags": ["platform:web", "type:domain"]
+    },
+    "config": {
+      "tags": ["platform:web", "type:config"]
+    },
+    "util-data-table": {
+      "tags": ["platform:web", "type:util"]
     }
   }
 }
