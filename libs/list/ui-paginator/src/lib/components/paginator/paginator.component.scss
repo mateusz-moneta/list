@@ -9,6 +9,8 @@
 .paginator-settings-container {
   display: flex;
   align-items: center;
+  min-width: 240px;
+  margin-right: 25px;
 }
 
 .items-per-page,
@@ -51,6 +53,7 @@ mat-select {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  min-width: 375px;
 
   > div {
     display: flex;
