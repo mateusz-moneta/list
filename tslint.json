@@ -67,44 +67,15 @@
             "onlyDependOnLibsWithTags": ["platform:any", "platform:web"]
           },
           {
-            "sourceTag": "scope:auth",
-            "onlyDependOnLibsWithTags": ["name:user-public", "scope:shared", "scope:auth"]
-          },
-          {
-            "sourceTag": "scope:repository",
+            "sourceTag": "scope:list",
             "onlyDependOnLibsWithTags": [
-              "name:user-public",
-              "scope:repository",
-              "scope:shared",
-              "name:auth-public"
+              "scope:list",
+              "scope:shared"
             ]
           },
           {
             "sourceTag": "scope:shared",
             "onlyDependOnLibsWithTags": ["scope:shared"]
-          },
-          {
-            "sourceTag": "scope:user",
-            "onlyDependOnLibsWithTags": ["scope:user", "scope:shared"]
-          },
-          {
-            "sourceTag": "scope:pmp-web",
-            "onlyDependOnLibsWithTags": ["scope:pmp-web", "scope:shared"]
-          },
-          {
-            "sourceTag": "type:public",
-            "onlyDependOnLibsWithTags": ["*"]
-          },
-          {
-            "sourceTag": "type:api",
-            "onlyDependOnLibsWithTags": [
-              "type:application-services",
-              "type:domain",
-              "type:domain-services",
-              "type:public",
-              "type:shell",
-              "type:util"
-            ]
           },
           {
             "sourceTag": "type:application",

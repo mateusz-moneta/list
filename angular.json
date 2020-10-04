@@ -21,18 +21,13 @@
             "polyfills": "apps/list/src/polyfills.ts",
             "tsConfig": "apps/list/tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "apps/list/src/favicon.ico",
-              "apps/list/src/assets"
-            ],
+            "assets": ["apps/list/src/favicon.ico", "apps/list/src/assets"],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "./node_modules/bootstrap/dist/css/bootstrap.css",
               "apps/list/src/styles.scss"
             ],
-            "scripts": [
-              "./node_modules/jquery/dist/jquery.js"
-            ]
+            "scripts": ["./node_modules/jquery/dist/jquery.js"]
           },
           "configurations": {
             "production": {
@@ -90,10 +85,7 @@
               "apps/list/tsconfig.app.json",
               "apps/list/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/list/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/list/**/*"]
           }
         },
         "test": {
@@ -126,34 +118,56 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/list-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/list-e2e/**/*"
-            ]
+            "tsConfig": ["apps/list-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/list-e2e/**/*"]
           }
         }
       }
     },
-    "data-access-list": {
+    "feature-list": {
       "projectType": "library",
-      "root": "libs/data-access-list",
-      "sourceRoot": "libs/data-access-list/src",
+      "root": "libs/list/feature-list",
+      "sourceRoot": "libs/list/feature-list/src",
       "prefix": "list",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/data-access-list/tsconfig.lib.json",
-              "libs/data-access-list/tsconfig.spec.json"
+              "libs/list/feature-list/tsconfig.lib.json",
+              "libs/list/feature-list/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/data-access-list/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/feature-list/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/list/feature-list/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "data-access-list": {
+      "projectType": "library",
+      "root": "libs/list/data-access-list",
+      "sourceRoot": "libs/list/data-access-list/src",
+      "prefix": "list",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/list/data-access-list/tsconfig.lib.json",
+              "libs/list/data-access-list/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/data-access-list/**/*"]
           }
         },
         "test": {
@@ -170,29 +184,26 @@
         }
       }
     },
-    "ui": {
+    "ui-filter": {
       "projectType": "library",
-      "root": "libs/ui",
-      "sourceRoot": "libs/ui/src",
+      "root": "libs/list/ui-filter",
+      "sourceRoot": "libs/list/ui-filter/src",
       "prefix": "list",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/ui/tsconfig.lib.json",
-              "libs/ui/tsconfig.spec.json"
+              "libs/list/ui-filter/tsconfig.lib.json",
+              "libs/list/ui-filter/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/ui/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/list/ui-filter/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/ui/jest.config.js",
+            "jestConfig": "libs/list/ui-filter/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -203,29 +214,179 @@
         }
       }
     },
-    "shared": {
+    "ui-paginator": {
       "projectType": "library",
-      "root": "libs/shared",
-      "sourceRoot": "libs/shared/src",
+      "root": "libs/list/ui-paginator",
+      "sourceRoot": "libs/list/ui-paginator/src",
       "prefix": "list",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/shared/tsconfig.lib.json",
-              "libs/shared/tsconfig.spec.json"
+              "libs/list/ui-paginator/tsconfig.lib.json",
+              "libs/list/ui-paginator/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/list/ui-paginator/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/list/ui-paginator/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "ui-progress-spinner": {
+      "projectType": "library",
+      "root": "libs/list/ui-progress-spinner",
+      "sourceRoot": "libs/list/ui-progress-spinner/src",
+      "prefix": "list",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/list/ui-progress-spinner/tsconfig.lib.json",
+              "libs/list/ui-progress-spinner/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**",
-              "!libs/shared/**/*"
+              "!libs/list/ui-progress-spinner/**/*"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/shared/jest.config.js",
+            "jestConfig": "libs/list/ui-progress-spinner/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "ui-table": {
+      "projectType": "library",
+      "root": "libs/list/ui-table",
+      "sourceRoot": "libs/list/ui-table/src",
+      "prefix": "list",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/list/ui-table/tsconfig.lib.json",
+              "libs/list/ui-table/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/list/ui-table/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/list/ui-table/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "domain": {
+      "projectType": "library",
+      "root": "libs/list/domain",
+      "sourceRoot": "libs/list/domain/src",
+      "prefix": "list",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/list/domain/tsconfig.lib.json",
+              "libs/list/domain/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/list/domain/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/list/domain/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "config": {
+      "projectType": "library",
+      "root": "libs/list/config",
+      "sourceRoot": "libs/list/config/src",
+      "prefix": "list",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/list/config/tsconfig.lib.json",
+              "libs/list/config/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/list/config/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/list/config/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "util-data-table": {
+      "projectType": "library",
+      "root": "libs/list/util-data-table",
+      "sourceRoot": "libs/list/util-data-table/src",
+      "prefix": "list",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/list/util-data-table/tsconfig.lib.json",
+              "libs/list/util-data-table/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/list/util-data-table/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/list/util-data-table/jest.config.js",
             "passWithNoTests": true
           }
         }

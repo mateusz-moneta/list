@@ -1,0 +1,15 @@
+<mat-form-field>
+  <mat-label>Filter by value</mat-label>
+  <input [formControl]="control" type="text" matInput>
+
+  <button
+    *ngIf="control.value"
+    (click)="control.reset()"
+    aria-label="Clear"
+    type="button"
+    matSuffix
+    mat-icon-button
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
