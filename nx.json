@@ -30,31 +30,31 @@
       "implicitDependencies": ["list"]
     },
     "list-feature-list": {
-      "tags": ["platform:web", "type:feature"]
+      "tags": ["platform:web", "scope:list", "type:feature"]
     },
     "list-data-access-list": {
-      "tags": ["platform:web", "type:data-access"]
+      "tags": ["platform:web", "scope:list", "type:data-access"]
     },
     "list-ui-filter": {
-      "tags": ["platform:web", "type:ui"]
+      "tags": ["platform:web", "scope:list", "type:ui"]
     },
     "list-ui-paginator": {
-      "tags": ["platform:web", "type:ui"]
+      "tags": ["platform:web", "scope:list", "type:ui"]
     },
     "list-ui-progress-spinner": {
-      "tags": ["platform:web", "type:ui"]
+      "tags": ["platform:web", "scope:list", "type:ui"]
     },
     "list-ui-table": {
-      "tags": ["platform:web", "type:ui"]
+      "tags": ["platform:web", "scope:list", "type:ui"]
     },
     "list-domain": {
-      "tags": ["platform:web", "type:domain"]
+      "tags": ["platform:web", "scope:list", "type:domain"]
     },
     "list-config": {
-      "tags": ["platform:web", "type:config"]
+      "tags": ["platform:web", "scope:list", "type:config"]
     },
     "list-util-data-table": {
-      "tags": ["platform:web", "type:util"]
+      "tags": ["platform:web", "scope:list", "type:util"]
     }
   }
 }
