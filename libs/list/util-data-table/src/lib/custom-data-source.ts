@@ -19,6 +19,7 @@ export class CustomDataSource<T> {
     this.data$.next(
       paginateItems(this.data, this.pagination$.getValue().pageIndex, this.pagination$.getValue().pageSize)
     );
+
     this.recordsCount$.next(this.data.length);
     this.handleSettings();
   }
@@ -56,6 +57,8 @@ export class CustomDataSource<T> {
         this.sort$.getValue().direction
       )
       : filteredItems;
+
+    this.recordsCount$.next(sortedItems.length);
 
     return paginateItems<T>(sortedItems, this.pagination$.getValue().pageIndex, this.pagination$.getValue().pageSize);
   }
