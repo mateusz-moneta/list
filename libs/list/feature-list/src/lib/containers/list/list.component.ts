@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -11,24 +11,25 @@ import { CustomDataSource } from '@list/list/util-data-table';
 @Component({
   selector: 'list-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  styleUrls: ['./list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListComponent implements OnInit, OnDestroy {
   @ViewChild('listTable', { static: false }) listTable: TableComponent<CompanySummary>;
 
   companySummaryList$ = this.listFacade.companySummaryList$;
   dataSource: CustomDataSource<CompanySummary>;
-  fieldConfiguration: FieldConfiguration[] = [
-    { propertyName: 'id', name: 'ID' },
-    { propertyName: 'name', name: 'Name' },
-    { propertyName: 'averageIncome', name: 'Average Income' },
-    { propertyName: 'lastMonthIncome', name: 'Last Month Income' },
-    { propertyName: 'totalIncome', name: 'Total Income' }
-  ];
-  filterValue: string;
   getCompanySummaryListInProgress$ = this.listFacade.getCompanySummaryListInProgress$;
 
   private unSubscribe$ = new Subject<void>();
+  
+  readonly fieldConfiguration: FieldConfiguration[] = [
+     { propertyName: 'id', name: 'ID' },
+     { propertyName: 'name', name: 'Name' },
+     { propertyName: 'averageIncome', name: 'Average Income' },
+     { propertyName: 'lastMonthIncome', name: 'Last Month Income' },
+     { propertyName: 'totalIncome', name: 'Total Income' }
+   ];
   readonly paginationConfig = tableConfig.pagination;
 
   constructor(private listFacade: ListFacade) {}
@@ -44,9 +45,8 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   onFilterValueChange(filterValue: string): void {
-    this.filterValue = filterValue;
+    this.dataSource.changeFilter(filterValue);
   }
-
 
   private initCompanySummaryList(): void {
     this.companySummaryList$

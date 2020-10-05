@@ -14,9 +14,4 @@ export class TableComponent<T> {
 
   @Input()
   fieldConfiguration: FieldConfiguration[] = [];
-
-  @Input()
-  set filterValue(value: string) {
-    this.dataSource.changeFilter(value);
-  }
 }
