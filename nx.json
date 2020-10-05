@@ -29,31 +29,31 @@
       "tags": ["platform:web", "type:application"],
       "implicitDependencies": ["list"]
     },
-    "feature-list": {
+    "list-feature-list": {
       "tags": ["platform:web", "type:feature"]
     },
-    "data-access-list": {
+    "list-data-access-list": {
       "tags": ["platform:web", "type:data-access"]
     },
-    "ui-filter": {
+    "list-ui-filter": {
       "tags": ["platform:web", "type:ui"]
     },
-    "ui-paginator": {
+    "list-ui-paginator": {
       "tags": ["platform:web", "type:ui"]
     },
-    "ui-progress-spinner": {
+    "list-ui-progress-spinner": {
       "tags": ["platform:web", "type:ui"]
     },
-    "ui-table": {
+    "list-ui-table": {
       "tags": ["platform:web", "type:ui"]
     },
-    "domain": {
+    "list-domain": {
       "tags": ["platform:web", "type:domain"]
     },
-    "config": {
+    "list-config": {
       "tags": ["platform:web", "type:config"]
     },
-    "util-data-table": {
+    "list-util-data-table": {
       "tags": ["platform:web", "type:util"]
     }
   }
